@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG ="MainActivity";
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        addJobNew();
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void addJobNew() {
+    public void addJob(View view) {
         ComponentName componentName= new ComponentName(this,MyJobService.class);
         JobInfo info= new JobInfo.Builder(123,componentName)
                 .setRequiresCharging(true)
@@ -45,24 +45,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-//    public void addJob(View view) {
-//        ComponentName componentName= new ComponentName(this,MyJobService.class);
-//        JobInfo info= new JobInfo.Builder(123,componentName)
-//        .setRequiresCharging(true)
-//        .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
-//        .setPersisted(true)
-//        .setPeriodic(15*60*1000)
-//        .build();
-//
-//        JobScheduler scheduler =(JobScheduler)getSystemService(JOB_SCHEDULER_SERVICE);
-//        int resultCode=scheduler.schedule(info);
-//        if(resultCode == JobScheduler.RESULT_SUCCESS){
-//            Log.d(TAG,"Job Shedule");
-//        }else {
-//            Log.d(TAG,"Job Shedule Failed");
-//        }
-//    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void cancel(View view) {
        JobScheduler scheduler=(JobScheduler)getSystemService(JOB_SCHEDULER_SERVICE);
